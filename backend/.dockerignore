@@ -1,0 +1,54 @@
+# Docker ignore file untuk build yang lebih cepat dan image yang lebih kecil
+
+# Dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Test files
+tests/
+coverage/
+*.test.js
+jest.config.js
+
+# Development files
+.env
+.env.local
+.env.development
+.env.test
+nodemon.json
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Logs
+logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+
+# Documentation
+README.md
+CHANGELOG.md
+docs/
+
+# Build artifacts
+dist/
+build/
+
+# Uploads (will be volume mounted in production)
+uploads/*
+!uploads/.gitkeep

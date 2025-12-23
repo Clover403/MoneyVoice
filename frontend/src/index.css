@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles for accessibility */
+:root {
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+  --color-success: #16a34a;
+  --color-warning: #ca8a04;
+  --color-error: #dc2626;
+  --color-text: #1f2937;
+  --color-bg: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px; /* Base font size larger for accessibility */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Skip link for screen readers */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-primary);
+  color: white;
+  padding: 8px 16px;
+  z-index: 100;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Large touch targets */
+button, 
+a, 
+input[type="submit"], 
+input[type="button"] {
+  min-height: 48px;
+  min-width: 48px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-primary: #0000ff;
+    --color-text: #000000;
+    --color-bg: #ffffff;
+  }
+  
+  button, a {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Utility classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Button styles */
+.btn {
+  @apply px-6 py-4 rounded-xl font-bold text-lg transition-all duration-200;
+  @apply focus:ring-4 focus:ring-offset-2;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply active:scale-95;
+}
+
+.btn-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+  @apply focus:ring-blue-500;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+  @apply focus:ring-gray-500;
+}
+
+.btn-success {
+  @apply bg-green-600 text-white hover:bg-green-700;
+  @apply focus:ring-green-500;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white hover:bg-red-700;
+  @apply focus:ring-red-500;
+}
+
+.btn-large {
+  @apply py-6 px-8 text-xl;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-2xl shadow-lg p-6;
+  @apply border-2 border-gray-100;
+}
+
+/* Input styles */
+.input {
+  @apply w-full px-4 py-4 text-lg rounded-xl border-2 border-gray-300;
+  @apply focus:border-blue-500 focus:ring-2 focus:ring-blue-200;
+  @apply placeholder:text-gray-400;
+}
+
+/* Large display for currency values */
+.currency-display {
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold text-center;
+  @apply text-green-600;
+}
+
+/* Scan button pulsing animation */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+.scan-button {
+  position: relative;
+}
+
+.scan-button::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  opacity: 0.3;
+  animation: pulse-ring 2s infinite;
+}
+
+/* Camera preview */
+.camera-preview {
+  @apply w-full aspect-[4/3] bg-black rounded-2xl overflow-hidden;
+  @apply relative;
+}
+
+.camera-preview video {
+  @apply w-full h-full object-cover;
+}
+
+/* Navigation styles */
+.nav-item {
+  @apply flex flex-col items-center justify-center p-4;
+  @apply text-gray-600 hover:text-blue-600;
+  @apply transition-colors duration-200;
+  @apply min-h-[64px];
+}
+
+.nav-item.active {
+  @apply text-blue-600 font-bold;
+}
